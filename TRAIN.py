@@ -19,14 +19,14 @@ import torch
 import numpy as np
 
 #...........................................Input parametrs................................................................
-Train_Image_Dir="Data_Zoo/Materials_In_Vessels/Train_Images/" # Images and labels for training
-Train_Label_Dir="Data_Zoo/Materials_In_Vessels/LiquidSolidLabels/"# Annotetion in png format for train images (assume the name of the images and annotation images are the same (but annotation is always png format))
+Train_Image_Dir="train/images" # Images and labels for training
+Train_Label_Dir="train/masks"# Annotetion in png format for train images (assume the name of the images and annotation images are the same (but annotation is always png format))
 UseValidationSet=False# do you want to use validation set in training
 Valid_Image_Dir="Data_Zoo/Materials_In_Vessels/Test_Images_All/"# Validation images that will be used to evaluate training (the ROImap and Labels are in same folder as the training set)
 Valid_Label_Dir="Data_Zoo/Materials_In_Vessels/Test_Images_All/" # Annotetion in png format for validation images (assume the name of the images and annotation images are the same (but annotation is always png format))
 
-Pretrained_Encoder_Weights="Pretrained_Encoder_Weights/densenet_cosine_264_k32.pth" #File were weight for pretrained encoder are saved this can be download from: https://drive.google.com/file/d/1bFdIbIS_2pWd9PQs1x_hYq6Y0BVsL2eI/view?usp=sharing
-TrainedModelWeightDir="TrainedModelWeights/" # Folder where trained model weight and information will be stored"
+Pretrained_Encoder_Weights="weights/densenet_cosine_264_k32.pth" #File were weight for pretrained encoder are saved this can be download from: https://drive.google.com/file/d/1bFdIbIS_2pWd9PQs1x_hYq6Y0BVsL2eI/view?usp=sharing
+TrainedModelWeightDir="trained_weights/" # Folder where trained model weight and information will be stored"
 Trained_model_path="" # Path of trained model weights If you want to return to trained model, else should be =""
 if not os.path.exists(TrainedModelWeightDir): os.makedirs(TrainedModelWeightDir) # Create folder for trained weight
 
@@ -38,7 +38,7 @@ ValidLossTxtFile=TrainedModelWeightDir+"ValidationLoss.txt"# Where validation lo
 Batch_Size=1 # Number of images per training iteration (keep small to avoid out of  memory problems)
 Weight_Decay=1e-4# Weight for the weight decay loss function
 MAX_ITERATION = int(800010) # Max  number of training iteration
-NUM_CLASSES = 4#Number of classes the model predict
+NUM_CLASSES = 1#Number of classes the model predict
 
 UpdateEncoderBatchNormStatistics=True
 
